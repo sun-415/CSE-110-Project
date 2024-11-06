@@ -39,6 +39,7 @@ nav {
   color: #e0ebca;
   font-size: 20px;
   transition: color 0.2s ease;
+  font-weight: 600;
 }
 
 .link a:hover {
