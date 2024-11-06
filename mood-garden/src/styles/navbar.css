@@ -1,35 +1,50 @@
-img {
+.linksContainer {
+  display: flex;
+  align-items: center;
+  background-color: #93A87E;
+  padding: 0;
+  width: 100%;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  padding: 17px 24px;
+  gap: 12px;
+}
+
+.logoText {
+  color: #e0ebca;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  font-family: 'Crimson Text', serif;
+}
+
+.logoImg {
   height: 26px;
   width: auto;
 }
 
-.logoContainer {
-  display: inline;
-  float: left;
-  padding: 17px;
-  background-color: #93A87E;
-
-}
-
 nav {
-  display: flex; 
+  display: flex;
   justify-content: flex-end;
-  background-color: #93A87E;
+  flex: 1;
   padding: 20px;
   column-gap: 50px;
 }
 
-.link a{
+.link a {
   text-decoration: none;
   color: #e0ebca;
   font-size: 20px;
+  transition: color 0.2s ease;
 }
 
-.link a:hover{
+.link a:hover {
   color: white;
 }
 
-.link a.active{
+.link a.active {
   color: #353d2d;
 }
-
