@@ -5,6 +5,34 @@
   height: calc(100vh - 100px);
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.backgroundWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background-image: url('../assets/images/background-small.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .backgroundWrapper {
+    background-image: url('../assets/images/background-medium.jpg');
+  }
+}
+
+@media (min-width: 1440px) {
+  .backgroundWrapper {
+    background-image: url('../assets/images/background-large.jpg');
+  }
 }
 
 .mainSection {
@@ -147,4 +175,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: top;
+}
+
+/* Add this to handle the navbar overlap */
+body {
+  background-color: transparent;
+}
+
+.linksContainer {
+  position: relative;
+  z-index: 2;
 }

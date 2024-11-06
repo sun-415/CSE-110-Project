@@ -1,0 +1,104 @@
+.checkInContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.formBox {
+  background: #f8f9fa;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.formBox h1 {
+  font-size: 32px;
+  color: #2c3e50;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.questionGroup {
+  margin-bottom: 30px;
+}
+
+.questionGroup label {
+  display: block;
+  margin-bottom: 25px;
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+.questionGroup input[type="number"] {
+  width: 100px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.ratingGroup {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-top: 15px;
+  margin-left: -5px;
+}
+
+.ratingLabel {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ratingLabel input[type="radio"] {
+  display: none;
+}
+
+.ratingLabel span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.ratingLabel input[type="radio"]:checked+span {
+  background-color: #4285f4;
+  border-color: #4285f4;
+  color: white;
+}
+
+.submitButton {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 40px auto 0;
+  padding: 12px 24px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.submitButton:hover {
+  background-color: #3367d6;
+}
