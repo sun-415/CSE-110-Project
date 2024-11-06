@@ -1,0 +1,136 @@
+.progressContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.progressContent {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  padding: 20px;
+}
+
+.calendarSection {
+  flex: 2;
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendarSection h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.plantSection {
+  flex: 1;
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Calendar customization */
+.custom-calendar {
+  width: 100%;
+  border: none !important;
+  background-color: transparent !important;
+  font-family: 'Inter', sans-serif;
+}
+
+.react-calendar__tile {
+  padding: 1em 0.5em;
+  background: none;
+  text-align: center;
+  line-height: 16px;
+  font-family: 'Inter', sans-serif;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #93A87E !important;
+  color: white;
+}
+
+.react-calendar__tile--active {
+  background: #93A87E !important;
+  color: white;
+}
+
+.react-calendar__navigation button {
+  font-family: 'Inter', sans-serif;
+}
+
+.react-calendar__month-view__weekdays {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+/* Next Plant styles */
+.nextPlantContainer {
+  text-align: center;
+}
+
+.nextPlantContainer h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.plantPreview {
+  font-size: 72px;
+  margin: 20px 0;
+}
+
+.progressBarContainer {
+  background-color: #e9ecef;
+  border-radius: 10px;
+  height: 20px;
+  position: relative;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  background-color: #93A87E;
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #2c3e50;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.plantDescription {
+  color: #666;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .progressContent {
+    flex-direction: column;
+  }
+
+  .calendarSection,
+  .plantSection {
+    width: 100%;
+  }
+}
