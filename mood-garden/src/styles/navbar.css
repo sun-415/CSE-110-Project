@@ -1,0 +1,35 @@
+img {
+  height: 26px;
+  width: auto;
+}
+
+.logoContainer {
+  display: inline;
+  float: left;
+  padding: 17px;
+  background-color: #93A87E;
+
+}
+
+nav {
+  display: flex; 
+  justify-content: flex-end;
+  background-color: #93A87E;
+  padding: 20px;
+  column-gap: 50px;
+}
+
+.link a{
+  text-decoration: none;
+  color: #e0ebca;
+  font-size: 20px;
+}
+
+.link a:hover{
+  color: white;
+}
+
+.link a.active{
+  color: #353d2d;
+}
+
