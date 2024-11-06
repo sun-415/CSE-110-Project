@@ -1,13 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import "../styles/navbar.css";
+import logo from "../assets/AppLogo.png";
 
 export const Navbar = () => {
+  const location = useLocation();
   return (
     <div>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/checkin">CheckIn</Link>
-        <Link to="/progress">Progress</Link>
+      <div className="linksContainer">
+      <div className="logoContainer"><img src={logo} alt="Mood Garden Logo" className="logoImg"/></div>
+      <nav className="link">
+        <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
+        <Link to="/checkin" className={location.pathname === '/checkin' ? 'active' : ''}>Check-In</Link>
+        <Link to="/progress" className={location.pathname === '/progress' ? 'active' : ''}>Progress</Link>
       </nav>
+      </div>
     </div>
   );
 };
