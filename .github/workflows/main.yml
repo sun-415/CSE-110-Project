@@ -15,5 +15,7 @@ jobs: # the things being executed
        run: npm install
        working-directory: mood-garden # specify the working directory for this step
      - name: Unit Test
-       run: npm test -- --forceExit --runInBand --detectOpenHandles # the actual testing line
+       run: npm test # the actual testing line
+       env:
+        CI: true
        working-directory: mood-garden # specify the working directory for this step
