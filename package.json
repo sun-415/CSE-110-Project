@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@types/react-calendar": "^4.1.0",
-    "react-calendar": "^5.1.0"
-  }
-}
