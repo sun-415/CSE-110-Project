@@ -5,7 +5,7 @@ import express from "express";
 import cors from "cors";
 import { logger } from "./middlewares/logger";
 import errorHandler from "./middlewares/errorHandler";
-import users from "./routes/users";
+import userRoutes from "./routes/userRoutes";
 
 const app = express();
 
@@ -15,7 +15,7 @@ app.use(cors({})); // Setup cors
 app.use(express.json()); // Allow JSON in req and res body
 
 // Routes setup
-app.use("/api/users", users);
+app.use("/api/users", userRoutes);
 
 // Error handler middleware (running next(error) in controller calls this)
 app.use(errorHandler);
