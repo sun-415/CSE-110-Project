@@ -29,7 +29,7 @@
   color: #2c3e50;
   margin-bottom: 20px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .plantSection {
@@ -45,7 +45,7 @@
   width: 100%;
   border: none !important;
   background-color: transparent !important;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .react-calendar__tile {
@@ -53,27 +53,50 @@
   background: none;
   text-align: center;
   line-height: 16px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-.react-calendar__tile:enabled:hover,
-.react-calendar__tile:enabled:focus {
-  background-color: #93A87E !important;
-  color: white;
+.react-calendar__tile:enabled:hover {
+  background-color: #dcdcdc !important;
 }
 
-.react-calendar__tile--active {
-  background: #93A87E !important;
-  color: white;
+.react-calendar:focus,
+.react-calendar button:focus,
+.react-calendar .react-calendar__tile--active {
+  outline: none;
+  background-color: none;
+  color: inherit;
+}
+
+.react-calendar__tile:active,
+.react-calendar__tile--active,
+.react-calendar__tile:focus {
+  background-color: none;
+  outline: none;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: none;
 }
 
 .react-calendar__navigation button {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .react-calendar__month-view__weekdays {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
+}
+
+.answered-tile {
+  background: #93a87e !important;
+  color: white !important;
+}
+
+.today-tile {
+  background: #b1b1b1 !important;
+  color: white !important;
 }
 
 /* Next Plant styles */
@@ -84,7 +107,7 @@
 .nextPlantContainer h2 {
   color: #2c3e50;
   margin-bottom: 20px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .plantPreview {
@@ -102,7 +125,7 @@
 }
 
 .progressBarFill {
-  background-color: #93A87E;
+  background-color: #93a87e;
   height: 100%;
   border-radius: 10px;
   transition: width 0.3s ease;

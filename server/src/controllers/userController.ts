@@ -60,7 +60,7 @@ export const getUserById = asyncHandler(async (req, res, next) => {
 // @access Private
 export const updateUser = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
-  const { name, targetSleepTime } = req.body;
+  const { name, targetSleepTime, score } = req.body;
 
   if (!name && targetSleepTime === undefined) {
     return next(
@@ -82,6 +82,10 @@ export const updateUser = asyncHandler(async (req, res, next) => {
 
   if (targetSleepTime !== undefined) {
     user.targetSleepTime = targetSleepTime;
+  }
+
+  if (score !== undefined) {
+    user.score = score;
   }
 
   try {

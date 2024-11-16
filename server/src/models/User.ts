@@ -18,6 +18,11 @@ const userSchema = new Schema(
       type: Number,
       required: true,
     },
+    score: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
   {
     // Automatically generates created and updated times
