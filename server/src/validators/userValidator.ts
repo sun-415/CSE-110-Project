@@ -26,14 +26,21 @@ const validateTargetSleepTime = body("targetSleepTime")
   .notEmpty()
   .withMessage("Target sleep time is required");
 
+const validateScore = body("Score")
+  .isNumeric()
+  .withMessage("Score time must be a number")
+  .optional();
+
 export const createUserValidator = [
   validateId,
   validateEmail,
   validateName,
   validateTargetSleepTime,
+  validateScore,
 ];
 
 export const updateUserValidator = [
   validateName.optional(),
   validateTargetSleepTime.optional(),
+  validateScore,
 ];
