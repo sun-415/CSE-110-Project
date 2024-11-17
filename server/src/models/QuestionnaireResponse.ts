@@ -10,7 +10,7 @@ const questionnaireResponseSchema = new Schema({
     required: true,
   },
   responses: {
-    type: String,
+    type: [Schema.Types.Mixed],
     required: true,
   },
 });
