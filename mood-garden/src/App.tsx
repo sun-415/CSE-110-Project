@@ -1,10 +1,10 @@
-import React from 'react';
-import { Home } from './pages/Home';
-import { CheckIn } from './pages/CheckIn';
-import { Progress } from './pages/Progress/Progress';
-import { Route, Routes } from 'react-router-dom';
-import { Navbar } from './components/navbar';
-import './App.css';
+import React from "react";
+import { Home } from "./pages/Home";
+import { CheckIn } from "./pages/CheckIn";
+import { Progress } from "./pages/Progress";
+import { Route, Routes } from "react-router-dom";
+import { Navbar } from "./components/navbar";
+import "./App.css";
 
 function App() {
   return (

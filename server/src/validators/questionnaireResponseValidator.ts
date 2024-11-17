@@ -13,14 +13,14 @@ const validateUserId = body("userId")
   .withMessage("userId is required");
 
 const validateDate = body("date")
-  .isISO8601()
-  .withMessage("Date must be a valid ISO 8601 date string")
+  .isDate()
+  .withMessage("Date must be a valid date")
   .notEmpty()
   .withMessage("Date is required");
 
 const validateResponses = body("responses")
-  .isObject()
-  .withMessage("Responses must be an object")
+  .isArray()
+  .withMessage("Responses must be an array")
   .notEmpty()
   .withMessage("Responses are required");
 

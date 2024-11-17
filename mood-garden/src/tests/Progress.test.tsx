@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Progress } from "../pages/Progress/Progress";
+import { Progress } from "../pages/Progress";
 
 test("renders Progress page", () => {
   render(<Progress />);
