@@ -2,7 +2,7 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 import { NextPlant } from "../components/NextPlant/NextPlant";
 import "react-calendar/dist/Calendar.css";
-import "../../styles/progress.css";
+import "../styles/progress.css";
 import { View } from "react-calendar/dist/cjs/shared/types";
 
 type ValuePiece = Date | null;
