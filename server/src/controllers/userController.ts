@@ -1,6 +1,8 @@
 import User from "../models/User";
 import asyncHandler from "express-async-handler";
+import { validationResult } from "express-validator";
 import createHttpError from "http-errors";
+import validationErrorParser from "src/utils/validationErrorParser";
 
 // @desc Get all users
 // @route GET /api/users
@@ -19,6 +21,11 @@ export const getUsers = asyncHandler(async (req, res, next) => {
 // @route POST /api/users
 // @access Private
 export const createUser = asyncHandler(async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(createHttpError(400, validationErrorParser(errors)));
+  }
+
   const { id, email, name, targetSleepTime } = req.body;
 
   const existingUser = await User.findOne({ $or: [{ email }, { id }] })
@@ -60,6 +67,12 @@ export const getUserById = asyncHandler(async (req, res, next) => {
 // @access Private
 export const updateUser = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(createHttpError(400, validationErrorParser(errors)));
+  }
+
   const { name, targetSleepTime, score } = req.body;
 
   if (!name && targetSleepTime === undefined) {
