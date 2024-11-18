@@ -10,6 +10,8 @@ export const CheckIn = () => {
         energyLevels: ""
     });
 
+    const [totalPoints, setTotalPoints] = useState(0); // State to store total points
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -21,6 +23,33 @@ export const CheckIn = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log(formData); // For now, just log the data
+        
+        // Calculate points
+        const sleepHoursPoints = parseFloat(formData.sleepHours) * 10 || 0;
+        const sleepQualityPoints = parseInt(formData.sleepQuality) * 10 || 0;
+        const sleepinessPoints = parseInt(formData.sleepiness) * 10 || 0;
+        const productivityPoints = parseInt(formData.productivity) * 10 || 0;
+        const energyLevelsPoints = parseInt(formData.energyLevels) * 10 || 0;
+        const total =
+            sleepHoursPoints +
+            sleepQualityPoints +
+            sleepinessPoints +
+            productivityPoints +
+            energyLevelsPoints;
+        
+        setTotalPoints(total); // Update the state with the total points
+        console.log("Total Points:", total); // Log the total points (for debugging)
+        alert("Your questionnaire has been submitted! Total points for today: " + total + 
+             "\nNavigate to the Progress page to see your overall growth!");
+
+        // Clear the form
+        setFormData({
+            sleepHours: "",
+            sleepQuality: "",
+            sleepiness: "",
+            productivity: "",
+            energyLevels: "",
+      });
     };
 
     return (
@@ -59,6 +88,7 @@ export const CheckIn = () => {
                                                 type="radio"
                                                 name={field}
                                                 value={num}
+                                                checked={formData[field as keyof typeof formData] === `${num}`} // Tie checked property to formData
                                                 onChange={handleChange}
                                                 required
                                             />
@@ -76,3 +106,4 @@ export const CheckIn = () => {
         </>
     );
 };
+
