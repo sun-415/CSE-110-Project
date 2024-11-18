@@ -1,6 +1,8 @@
 import QuestionnaireResponse from "../models/QuestionnaireResponse";
 import asyncHandler from "express-async-handler";
+import { validationResult } from "express-validator";
 import createHttpError from "http-errors";
+import validationErrorParser from "src/utils/validationErrorParser";
 
 // @desc Get all questionnaire responses
 // @route GET /api/questionnaireResponses
@@ -19,6 +21,11 @@ export const getAllResponses = asyncHandler(async (req, res, next) => {
 // @route POST /api/questionnaireResponses
 // @access Private
 export const createResponse = asyncHandler(async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(createHttpError(400, validationErrorParser(errors)));
+  }
+
   const { id, userId, date, responses } = req.body;
 
   // Check if a response with the same ID already exists
@@ -69,6 +76,12 @@ export const getResponseById = asyncHandler(async (req, res, next) => {
 // @access Private
 export const updateResponse = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(createHttpError(400, validationErrorParser(errors)));
+  }
+
   const { date, responses } = req.body;
 
   if (!date && !responses) {
