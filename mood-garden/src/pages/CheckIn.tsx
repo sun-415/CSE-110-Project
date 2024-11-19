@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../styles/checkin.css";
+import { PointsContext } from "../context/PointsContext";
 
 export const CheckIn = () => {
     const [formData, setFormData] = useState({
@@ -9,8 +10,8 @@ export const CheckIn = () => {
         productivity: "",
         energyLevels: ""
     });
-
-    const [totalPoints, setTotalPoints] = useState(0); // State to store total points
+    const {totalScore, setTotalScore} = useContext(PointsContext); // Context for total accumulated points so far
+    const [totalPoints, setTotalPoints] = useState(0); // State to store total points for a questionnaire
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -30,16 +31,20 @@ export const CheckIn = () => {
         const sleepinessPoints = parseInt(formData.sleepiness) * 10 || 0;
         const productivityPoints = parseInt(formData.productivity) * 10 || 0;
         const energyLevelsPoints = parseInt(formData.energyLevels) * 10 || 0;
-        const total =
+        const newPoints =
             sleepHoursPoints +
             sleepQualityPoints +
             sleepinessPoints +
             productivityPoints +
             energyLevelsPoints;
+
+        // Update total accumulated points
+        const newScore = totalScore + newPoints;
+        setTotalScore(newScore);
         
-        setTotalPoints(total); // Update the state with the total points
-        console.log("Total Points:", total); // Log the total points (for debugging)
-        alert("Your questionnaire has been submitted! Total points for today: " + total + 
+        setTotalPoints(newPoints); // Update the state with the total points
+        console.log("Total Points:", newPoints); // Log the total points (for debugging)
+        alert("Your questionnaire has been submitted! Total points for today: " + newPoints + 
              "\nNavigate to the Progress page to see your overall growth!");
 
         // Clear the form

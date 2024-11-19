@@ -1,7 +1,12 @@
+import { useContext } from "react";
+import { PointsContext } from "../../context/PointsContext";
+
 export const NextPlant = () => {
+  const {totalScore} = useContext(PointsContext); // Context for total accumulated points so far
+
   // Placeholder data - will be connected to backend later
   const currentPoints = 75;
-  const pointsNeeded = 100;
+  const pointsNeeded = 1000;
 
   return (
     <div className="nextPlantContainer">
@@ -12,10 +17,10 @@ export const NextPlant = () => {
       <div className="progressBarContainer">
         <div
           className="progressBarFill"
-          style={{ width: `${(currentPoints / pointsNeeded) * 100}%` }}
+          style={{ width: `${(totalScore / pointsNeeded) * 100}%` }}
         />
         <span className="progressText">
-          {currentPoints}/{pointsNeeded} points
+          {totalScore}/{pointsNeeded} points
         </span>
       </div>
       <p className="plantDescription">
