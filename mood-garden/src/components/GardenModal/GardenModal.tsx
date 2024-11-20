@@ -15,7 +15,7 @@ export const GardenModal = ({ isOpen, onClose }: GardenModalProps) => {
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="gardenModalOverlay">
+    <div className="gardenModalOverlay" role="dialog">
       <div className="gardenModalContent">
         <button className="closeButton" onClick={onClose}>×</button>
         <div className="gardenContainer">
