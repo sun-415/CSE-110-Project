@@ -8,6 +8,7 @@ import plant2 from '../../assets/garden/plants/plant2.png';
 import plant3 from '../../assets/garden/plants/plant3.png';
 import plant4 from '../../assets/garden/plants/plant4.png';
 import plant5 from '../../assets/garden/plants/plant5.png';
+import { Clock } from '../GardenModal/Clock';
 
 interface GardenModalProps {
   isOpen: boolean;
@@ -86,6 +87,7 @@ export const GardenModal = ({ isOpen, onClose }: GardenModalProps) => {
               className="gardenBackground"
             />
             <div className="plantsContainer">
+              <Clock />
               {getVisiblePlants()}
             </div>
           </div>
