@@ -10,8 +10,8 @@ export const CheckIn = () => {
         productivity: "",
         energyLevels: ""
     });
-    const {totalScore, setTotalScore} = useContext(PointsContext); // Context for total accumulated points so far
-    const [totalPoints, setTotalPoints] = useState(0); // State to store total points for a questionnaire
+
+    const {totalScore, setTotalScore } = useContext(PointsContext); // Context for total accumulated points so far
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -37,15 +37,11 @@ export const CheckIn = () => {
             sleepinessPoints +
             productivityPoints +
             energyLevelsPoints;
-
-        // Update total accumulated points
-        const newScore = totalScore + newPoints;
+    
+        const newScore = totalScore + newPoints; // Update total accumulated points
         setTotalScore(newScore);
-        
-        setTotalPoints(newPoints); // Update the state with the total points
-        console.log("Total Points:", newPoints); // Log the total points (for debugging)
-        alert("Your questionnaire has been submitted! Total points for today: " + newPoints + 
-             "\nNavigate to the Progress page to see your overall growth!");
+        alert("Your questionnaire has been submitted! Points earned today: " + newPoints + 
+            "\nNavigate to the Progress page to see your overall growth!");
 
         // Clear the form
         setFormData({
