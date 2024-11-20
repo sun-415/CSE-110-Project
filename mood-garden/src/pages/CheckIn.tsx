@@ -1,8 +1,14 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FC } from "react";
 import "../styles/checkin.css";
 import { PointsContext } from "../context/PointsContext";
 
-export const CheckIn = () => {
+interface CheckInProps {
+  isModal?: boolean;
+  selectedDate?: Date | null;
+  onClose?: () => void;
+}
+
+export const CheckIn: FC<CheckInProps> = ({ isModal, selectedDate, onClose }) => {
     const [formData, setFormData] = useState({
         sleepHours: "",
         sleepQuality: "",
@@ -51,60 +57,72 @@ export const CheckIn = () => {
             productivity: "",
             energyLevels: "",
       });
+
+      if (isModal && onClose) {
+        onClose();
+      }
     };
+
+    const content = (
+        <div className="formBox">
+            <h1>Daily Sleep Check-In {selectedDate && `for ${selectedDate.toLocaleDateString()}`}</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="questionGroup">
+                    <label>How many hours did you sleep last night?</label>
+                    <input
+                        type="number"
+                        name="sleepHours"
+                        data-testid="q1"
+                        min="0"
+                        max="24"
+                        step="0.5"
+                        value={formData.sleepHours}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                {["sleepQuality", "sleepiness", "productivity", "energyLevels"].map((field) => (
+                    <div key={field} className="questionGroup">
+                        <label>
+                            {field === "sleepQuality" && "How was the quality of your sleep?"}
+                            {field === "sleepiness" && "How sleepy did you feel throughout the day?"}
+                            {field === "productivity" && "How was your productivity today?"}
+                            {field === "energyLevels" && "How were your energy levels throughout the day?"}
+                        </label>
+                        <div className="ratingGroup">
+                            {[1, 2, 3, 4, 5].map((num) => (
+                                <label key={num} className="ratingLabel">
+                                    <input
+                                        type="radio"
+                                        name={field}
+                                        value={num}
+                                        data-testid={`${field}-${num}`} // Add specific data-testid
+                                        checked={formData[field as keyof typeof formData] === `${num}`} // Tie checked property to formData
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <span>{num}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+
+                <button type="submit" className="submitButton">Submit</button>
+            </form>
+        </div>
+    );
+
+    if (isModal) {
+        return content;
+    }
 
     return (
         <>
             <div className="backgroundWrapper"></div>
             <div className="checkInContainer">
-                <div className="formBox">
-                    <h1>Daily Sleep Check-In</h1>
-                    <form onSubmit={handleSubmit}>
-                        <div className="questionGroup">
-                            <label>How many hours did you sleep last night?</label>
-                            <input
-                                type="number"
-                                name="sleepHours"
-                                data-testid="q1"
-                                min="0"
-                                max="24"
-                                step="0.5"
-                                value={formData.sleepHours}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-
-                        {["sleepQuality", "sleepiness", "productivity", "energyLevels"].map((field) => (
-                            <div key={field} className="questionGroup">
-                                <label>
-                                    {field === "sleepQuality" && "How was the quality of your sleep?"}
-                                    {field === "sleepiness" && "How sleepy did you feel throughout the day?"}
-                                    {field === "productivity" && "How was your productivity today?"}
-                                    {field === "energyLevels" && "How were your energy levels throughout the day?"}
-                                </label>
-                                <div className="ratingGroup">
-                                    {[1, 2, 3, 4, 5].map((num) => (
-                                        <label key={num} className="ratingLabel">
-                                            <input
-                                                type="radio"
-                                                name={field}
-                                                value={num}
-                                                data-testid={`${field}-${num}`} // Add specific data-testid
-                                                checked={formData[field as keyof typeof formData] === `${num}`} // Tie checked property to formData
-                                                onChange={handleChange}
-                                                required
-                                            />
-                                            <span>{num}</span>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-
-                        <button type="submit" className="submitButton">Submit</button>
-                    </form>
-                </div>
+                {content}
             </div>
         </>
     );

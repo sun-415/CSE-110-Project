@@ -12,7 +12,6 @@ export const Navbar = () => {
       </div>
       <nav className="link">
         <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-        <Link to="/checkin" className={location.pathname === '/checkin' ? 'active' : ''}>Check-In</Link>
         <Link to="/progress" className={location.pathname === '/progress' ? 'active' : ''}>Progress</Link>
       </nav>
     </div>
