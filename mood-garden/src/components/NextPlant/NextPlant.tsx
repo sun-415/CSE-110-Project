@@ -39,7 +39,7 @@ export const NextPlant = () => {
     setPointsNeeded(pointsNeeded + 100);
   }
 
-  // TODO: Update the WIP plant
+  // TODO: Update the WIP plant and garden UI whenever user completes a level
 
 
 

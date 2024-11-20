@@ -7,7 +7,7 @@ describe("GardenModal", () => {
 
   const renderModal = (isOpen: boolean = true) => {
     return render(
-      <PointsContext.Provider value={{ totalScore: 0, setTotalScore: () => { } }}>
+      <PointsContext.Provider value={{ totalScore: 0, setTotalScore: () => { }, lastNotifiedLevel: 0, setLastNotifiedLevel: () => {}, }}>
         <GardenModal isOpen={isOpen} onClose={mockOnClose} />
       </PointsContext.Provider>
     );
