@@ -4,12 +4,15 @@ import { NextPlant } from "../components/NextPlant/NextPlant";
 import "react-calendar/dist/Calendar.css";
 import "../styles/progress.css";
 import { View } from "react-calendar/dist/cjs/shared/types";
+import { CheckInModal } from "../components/CheckInModal/CheckInModal";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export const Progress = () => {
   const [lastClickTime, setLastClickTime] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   // TODO: Populate with backend data
   const markedDates: Record<string, boolean> = {
@@ -46,10 +49,11 @@ export const Progress = () => {
     const currentTime = new Date().getTime();
 
     if (lastClickTime && currentTime - lastClickTime < 300) {
-      // TODO: Check date and open modal
-      console.log("Double-clicked on date:", value);
-    } else {
-      console.log("Single-clicked on date:", value);
+      // Handle double click
+      if (value instanceof Date) {
+        setSelectedDate(value);
+        setIsModalOpen(true);
+      }
     }
 
     setLastClickTime(currentTime);
@@ -65,7 +69,7 @@ export const Progress = () => {
             <Calendar
               className="custom-calendar"
               onClickDay={onClickDay}
-              onChange={() => {}}
+              onChange={() => { }}
               tileClassName={({ date, view }) => getTileStyle(date, view)}
             />
           </div>
@@ -74,6 +78,12 @@ export const Progress = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <CheckInModal
+          onClose={() => setIsModalOpen(false)}
+          selectedDate={selectedDate}
+        />
+      )}
     </>
   );
 };
