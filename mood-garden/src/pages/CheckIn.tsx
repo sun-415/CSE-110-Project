@@ -65,6 +65,7 @@ export const CheckIn = () => {
                             <input
                                 type="number"
                                 name="sleepHours"
+                                data-testid="q1"
                                 min="0"
                                 max="24"
                                 step="0.5"
@@ -89,6 +90,7 @@ export const CheckIn = () => {
                                                 type="radio"
                                                 name={field}
                                                 value={num}
+                                                data-testid={`${field}-${num}`} // Add specific data-testid
                                                 checked={formData[field as keyof typeof formData] === `${num}`} // Tie checked property to formData
                                                 onChange={handleChange}
                                                 required
