@@ -1,7 +1,10 @@
 import { useContext, useState, useEffect } from "react";
 import { PointsContext } from "../../context/PointsContext";
+import { GardenModal } from "../GardenModal/GardenModal";
 
 export const NextPlant = () => {
+  const [isGardenOpen, setIsGardenOpen] = useState(false);
+  
   // Placeholder data - will be connected to backend later
   const {totalScore, setTotalScore, lastNotifiedLevel, setLastNotifiedLevel} = useContext(PointsContext); // Context for total accumulated points so far
   const [pointsNeeded, setPointsNeeded] = useState(100);
@@ -58,6 +61,16 @@ export const NextPlant = () => {
       <p className="plantDescription">
         Keep tracking your sleep to grow your next plant!
       </p>
+      <button
+        className="viewGardenButton"
+        onClick={() => setIsGardenOpen(true)}
+      >
+        View Garden
+      </button>
+      <GardenModal
+        isOpen={isGardenOpen}
+        onClose={() => setIsGardenOpen(false)}
+      />
     </div>
   );
 }; 

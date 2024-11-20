@@ -157,3 +157,23 @@
     width: 100%;
   }
 }
+
+.viewGardenButton {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 20px auto 0;
+  padding: 12px 24px;
+  background-color: #93a87e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.viewGardenButton:hover {
+  background-color: #7a8e65;
+}
