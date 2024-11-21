@@ -12,14 +12,15 @@ import { PointsProvider } from "./context/PointsContext";
 function App() {
   return (
     <div>
+      <PointsProvider>
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/checkin" element={<CheckIn />} />
         <Route path="/progress" element={<Progress />} />
       </Routes>
-      <PointsProvider/>
       <Login/>
+      </PointsProvider>
     </div>
   );
 }
