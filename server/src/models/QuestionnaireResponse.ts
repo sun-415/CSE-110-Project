@@ -20,6 +20,6 @@ type QuestionnaireResponse = InferSchemaType<
 >;
 
 export default model<QuestionnaireResponse>(
-  "User",
+  "QuestionnaireResponse",
   questionnaireResponseSchema
 );

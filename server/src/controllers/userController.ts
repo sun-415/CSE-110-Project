@@ -2,7 +2,7 @@ import User from "../models/User";
 import asyncHandler from "express-async-handler";
 import { validationResult } from "express-validator";
 import createHttpError from "http-errors";
-import validationErrorParser from "src/utils/validationErrorParser";
+import validationErrorParser from "../utils/validationErrorParser";
 
 // @desc Get all users
 // @route GET /api/users
@@ -26,9 +26,9 @@ export const createUser = asyncHandler(async (req, res, next) => {
     return next(createHttpError(400, validationErrorParser(errors)));
   }
 
-  const { id, email, name, targetSleepTime } = req.body;
+  const { _id, email, name, targetSleepTime, score } = req.body;
 
-  const existingUser = await User.findOne({ $or: [{ email }, { id }] })
+  const existingUser = await User.findOne({ $or: [{ email }, { _id }] })
     .lean()
     .exec();
   if (existingUser) {
@@ -37,7 +37,7 @@ export const createUser = asyncHandler(async (req, res, next) => {
     );
   }
 
-  const newUser = new User({ _id: id, email, name, targetSleepTime });
+  const newUser = new User({ _id, email, name, targetSleepTime, score });
 
   try {
     const savedUser = await newUser.save();
