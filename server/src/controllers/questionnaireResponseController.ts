@@ -2,7 +2,7 @@ import QuestionnaireResponse from "../models/QuestionnaireResponse";
 import asyncHandler from "express-async-handler";
 import { validationResult } from "express-validator";
 import createHttpError from "http-errors";
-import validationErrorParser from "src/utils/validationErrorParser";
+import validationErrorParser from "../utils/validationErrorParser";
 
 // @desc Get all questionnaire responses
 // @route GET /api/questionnaireResponses
@@ -26,23 +26,22 @@ export const createResponse = asyncHandler(async (req, res, next) => {
     return next(createHttpError(400, validationErrorParser(errors)));
   }
 
-  const { id, userId, date, responses } = req.body;
+  const { userId, date, responses } = req.body;
 
   // Check if a response with the same ID already exists
-  const existingResponse = await QuestionnaireResponse.findOne({ id })
+  const existingResponse = await QuestionnaireResponse.findOne({ userId, date })
     .lean()
     .exec();
   if (existingResponse) {
     return next(
       createHttpError(
         409,
-        "Questionnaire response with this ID already exists."
+        "Questionnaire response with this date already exists for this user."
       )
     );
   }
 
   const newResponse = new QuestionnaireResponse({
-    id,
     userId,
     date,
     responses,
