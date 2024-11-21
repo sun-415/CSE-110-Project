@@ -127,4 +127,3 @@ export const CheckIn: FC<CheckInProps> = ({ isModal, selectedDate, onClose }) =>
         </>
     );
 };
-
