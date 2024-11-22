@@ -46,8 +46,7 @@ export const CheckIn: FC<CheckInProps> = ({ isModal, selectedDate, onClose }) =>
     
         const newScore = totalScore + newPoints; // Update total accumulated points
         setTotalScore(newScore);
-        alert("Your questionnaire has been submitted! Points earned today: " + newPoints + 
-            "\nNavigate to the Progress page to see your overall growth!");
+        alert("Your questionnaire has been submitted! Points earned today: " + newPoints);
 
         // Clear the form
         setFormData({
