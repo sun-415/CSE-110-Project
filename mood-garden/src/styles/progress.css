@@ -110,9 +110,12 @@
   font-family: "Inter", sans-serif;
 }
 
-.plantPreview {
-  font-size: 72px;
-  margin: 20px 0;
+.plantPreview img {
+  width: 150px; 
+  height: 150px;
+  object-fit: contain; 
+  display: block;
+  margin: 0 auto;
 }
 
 .progressBarContainer {
