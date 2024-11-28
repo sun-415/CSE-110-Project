@@ -6,7 +6,7 @@ import "../styles/login.css";
 
 
 
-export default function Login() {
+/*export default function Login() {
 
   const [name, setName] = useState<string | null>(null);
 
@@ -37,7 +37,6 @@ export default function Login() {
     </div>
   );
 };
-*/
 
   return <div className="my-custom-container">
 
@@ -55,6 +54,7 @@ export default function Login() {
 }
 
 
+*/
 
 
 // import decodeJwt from "../utils/decodeJwt";
