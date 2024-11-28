@@ -75,11 +75,11 @@ export const updateUser = asyncHandler(async (req, res, next) => {
 
   const { name, targetSleepTime, score } = req.body;
 
-  if (!name && targetSleepTime === undefined) {
+  if (!name && targetSleepTime === undefined && score === undefined) {
     return next(
       createHttpError(
         400,
-        "At least one field is required: name or targetSleepTime."
+        "At least one field is required: name or targetSleepTime or score."
       )
     );
   }

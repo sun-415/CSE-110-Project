@@ -1,7 +1,7 @@
 import { User } from "../types/User";
 import { createContext, useContext, useEffect, useState } from "react";
 import decodeJwt from "../utils/decodeJwt";
-import { createUser, getUserById } from "../api/users";
+import { createUser, getUserById, updateUser } from "../api/users";
 
 type AuthUser = User & { profilePicture: string };
 
@@ -10,7 +10,7 @@ interface AuthContextType {
   login: (credential: string) => void;
   logout: () => void;
   isAuthenticated: boolean;
-  updatePoints: (point: number) => void;
+  updateScore: (score: number) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -81,8 +81,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("authTokenExpiry");
   };
 
-  const updatePoints = (point: number) => {
-    // TODO: Update points in state and backend
+  const updateScore = (score: number) => {
+    if (user) {
+      updateUser(user._id, { score }).then((response) => {
+        if (response.success) {
+          setUser({ ...response.data, profilePicture: user.profilePicture });
+        }
+      });
+    }
   };
 
   return (
@@ -92,7 +98,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         login,
         logout,
         isAuthenticated: !!user,
-        updatePoints,
+        updateScore,
       }}
     >
       {children}

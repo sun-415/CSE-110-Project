@@ -28,10 +28,19 @@ export const createResponse = asyncHandler(async (req, res, next) => {
 
   const { userId, date, responses } = req.body;
 
-  // Check if a response with the same ID already exists
-  const existingResponse = await QuestionnaireResponse.findOne({ userId, date })
+  // Start and end of the day
+  const inputDate = new Date(date);
+  const startOfDay = new Date(inputDate.setUTCHours(0, 0, 0, 0)); // Midnight UTC
+  const endOfDay = new Date(inputDate.setUTCHours(23, 59, 59, 999)); // End of day UTC
+
+  // Check if a response for the same day already exists
+  const existingResponse = await QuestionnaireResponse.findOne({
+    userId,
+    date: { $gte: startOfDay, $lt: endOfDay },
+  })
     .lean()
     .exec();
+
   if (existingResponse) {
     return next(
       createHttpError(

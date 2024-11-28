@@ -1,11 +1,5 @@
 import { body } from "express-validator";
 
-const validateId = body("id")
-  .isString()
-  .withMessage("id must be a string")
-  .notEmpty()
-  .withMessage("id is required");
-
 const validateUserId = body("userId")
   .isString()
   .withMessage("userId must be a string")
@@ -13,7 +7,7 @@ const validateUserId = body("userId")
   .withMessage("userId is required");
 
 const validateDate = body("date")
-  .isDate()
+  .isISO8601()
   .withMessage("Date must be a valid date")
   .notEmpty()
   .withMessage("Date is required");
@@ -25,7 +19,6 @@ const validateResponses = body("responses")
   .withMessage("Responses are required");
 
 export const createResponseValidator = [
-  validateId,
   validateUserId,
   validateDate,
   validateResponses,

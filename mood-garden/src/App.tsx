@@ -13,7 +13,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/checkin" element={<CheckIn />} />
           <Route path="/progress" element={<Progress />} />
         </Routes>
       </AuthProvider>
