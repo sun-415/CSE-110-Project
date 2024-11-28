@@ -38,6 +38,7 @@ export const NextPlant = () => {
 
     // Notify user when they've unlocked all plants
     if (totalScore >= 500 && lastNotifiedLevel < 5) {
+      setWIPplant(plantImages[4]);
       setLastNotifiedLevel(5); // Set to max level
       alert("Congratulations! You have earned all the plants!");
     }
@@ -52,7 +53,7 @@ export const NextPlant = () => {
 
   return (
     <div className="nextPlantContainer">
-      <h2>Next Plant</h2>
+      <h2>{lastNotifiedLevel == 5 ? "Last Plant": "Next Plant"}</h2>
       <div className="plantPreview">
         <img src={WIPplant} alt={"Next Plant"} className={"WIP-plant"} />
       </div>
