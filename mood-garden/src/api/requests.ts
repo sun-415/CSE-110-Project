@@ -106,7 +106,7 @@ export async function get(
 
   // Make the request
   const response = await fetchRequest("GET", fullUrl, undefined, headers);
-  void assertOk(response);
+  void (await assertOk(response));
   return response;
 }
 
@@ -129,7 +129,7 @@ export async function post(
     body,
     headers
   );
-  void assertOk(response);
+  void (await assertOk(response));
   return response;
 }
 
@@ -152,7 +152,7 @@ export async function patch(
     body,
     headers
   );
-  void assertOk(response);
+  void (await assertOk(response));
   return response;
 }
 
@@ -174,7 +174,7 @@ export async function del(
     undefined,
     headers
   );
-  void assertOk(response);
+  void (await assertOk(response));
   return response;
 }
 

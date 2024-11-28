@@ -1,61 +1,30 @@
-import { useState } from "react";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
-import decodeJwt from "../utils/decodeJwt";
 import "../styles/login.css";
+import { useAuth } from "../context/AuthContext";
 
-
-
-
-/*export default function Login() {
-
-  const [name, setName] = useState<string | null>(null);
+export default function Login() {
+  const { login } = useAuth();
 
   function handleError() {
     console.log("Login failed");
   }
 
-
   function handleSuccess(credentialResponse: CredentialResponse) {
     console.log("credentialResponse", credentialResponse);
 
     if (credentialResponse.credential) {
-      const { payload } = decodeJwt(credentialResponse.credential);
-      console.log("payload credential", payload);
-      setName(payload.name);
+      login(credentialResponse.credential);
     }
   }
 
-  /*return (
-    <div>
-      <div className="google-login-container">
-        <GoogleLogin
-          onError={handleError}
-          onSuccess={handleSuccess}
-        />
+  return (
+    <div className="my-custom-container">
+      <div style={{ width: "200px", margin: "auto" }}>
+        <GoogleLogin onError={handleError} onSuccess={handleSuccess} />
       </div>
-      {name && <p>Welcome: {name}</p>}
     </div>
   );
-};
-
-  return <div className="my-custom-container">
-
-    {name == null &&
-
-      <GoogleLogin
-        onError={handleError}
-        onSuccess={handleSuccess} />}
-
-    {name && <h1> Welcome: {name}! </h1>}
-
-
-
-  </div>
 }
-
-
-*/
-
 
 // import decodeJwt from "../utils/decodeJwt";
 // import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
@@ -96,5 +65,3 @@ import "../styles/login.css";
 //     </div>
 //   );
 // }
-
-
