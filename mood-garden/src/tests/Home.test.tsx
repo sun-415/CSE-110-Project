@@ -1,8 +1,13 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { Home } from "../pages/Home";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 test("renders Homepage", async () => {
-  render(<Home />);
+  render(
+    <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+      <Home />
+    </GoogleOAuthProvider>
+  );
 
   // Check if the static text is rendered initially
   const homepageMessage = screen.getByText(/Plant the Seeds of Better Sleep/i);
