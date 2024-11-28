@@ -25,7 +25,7 @@ export default function Login() {
     }
   }
 
-  return (
+  /*return (
     <div>
       <div className="google-login-container">
         <GoogleLogin
@@ -37,13 +37,8 @@ export default function Login() {
     </div>
   );
 };
-/*return <div>
-  {name === null && (<GoogleLogin
-    onError={handleError}
-    onSuccess={handleSuccess} />)}
+*/
 
-  {name && <p> welcome: {name} </p>}
-=======
   return <div className="my-custom-container">
 
     {name === null &&
@@ -56,9 +51,8 @@ export default function Login() {
 
 
 
-</div>
+  </div>
 }
-*/
 
 
 

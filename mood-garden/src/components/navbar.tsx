@@ -9,6 +9,7 @@ export const Navbar = () => {
       <div className="logoContainer">
         <img src={logo} alt="Mood Garden Logo" className="logoImg" />
         <h1 className="logoText">Mood Garden</h1>
+
       </div>
       <nav className="link">
         <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
