@@ -41,7 +41,7 @@ export default function Login() {
 
   return <div className="my-custom-container">
 
-    {name === null &&
+    {name == null &&
 
       <GoogleLogin
         onError={handleError}
