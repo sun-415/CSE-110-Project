@@ -1,0 +1,63 @@
+.nav-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #e0ebca;
+  font-size: 20px;
+  transition: color 0.2s ease;
+  font-weight: 600;
+}
+
+.active {
+  color: #353d2d;
+}
+
+.profile-picture {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tray {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 150px;
+  padding: 10px;
+  z-index: 10;
+}
+
+.tray ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tray li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.tray li:hover {
+  background-color: #f0f0f0;
+}
+
+.tray-link {
+  text-decoration: none;
+  color: black;
+  display: block;
+  width: 100%;
+  height: 100%;
+}

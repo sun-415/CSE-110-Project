@@ -3,8 +3,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 import decodeJwt from "../utils/decodeJwt";
 import { createUser, getUserById } from "../api/users";
 
+type AuthUser = User & { profilePicture: string };
+
 interface AuthContextType {
-  user: User | null;
+  user: AuthUser | null;
   login: (credential: string) => void;
   logout: () => void;
   isAuthenticated: boolean;
@@ -16,7 +18,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
 
   useEffect(() => {
     // Check for existing token and validate expiration
@@ -31,7 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       const { payload } = decodeJwt(storedToken);
       getUserById(payload.sub).then((response) => {
         if (response.success) {
-          setUser(response.data);
+          setUser({ ...response.data, profilePicture: payload.picture });
         } else {
           console.log("redirect to create user page");
         }
@@ -47,7 +49,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const { payload } = decodeJwt(credential);
     getUserById(payload.sub).then((response) => {
       if (response.success) {
-        setUser(response.data);
+        setUser({ ...response.data, profilePicture: payload.picture });
       } else {
         createUser({
           _id: payload.sub,
@@ -57,7 +59,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           score: 0,
         }).then((response) => {
           if (response.success) {
-            setUser(response.data);
+            setUser({ ...response.data, profilePicture: payload.picture });
           } else {
             console.log(response.error);
           }
