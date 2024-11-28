@@ -1,15 +1,16 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { GardenModal } from "../components/GardenModal/GardenModal";
 import { PointsContext } from "../context/PointsContext";
+import { AuthProvider } from "../context/AuthContext";
 
 describe("GardenModal", () => {
   const mockOnClose = jest.fn();
 
   const renderModal = (isOpen: boolean = true) => {
     return render(
-      <PointsContext.Provider value={{ totalScore: 0, setTotalScore: () => { }, lastNotifiedLevel: 0, setLastNotifiedLevel: () => {}, }}>
+      <AuthProvider>
         <GardenModal isOpen={isOpen} onClose={mockOnClose} />
-      </PointsContext.Provider>
+      </AuthProvider>
     );
   };
 

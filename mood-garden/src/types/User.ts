@@ -19,6 +19,7 @@ export interface UserJSON {
 }
 
 export interface CreateUserRequest {
+  _id: string;
   email: string;
   name: string;
   targetSleepTime: number;

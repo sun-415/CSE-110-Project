@@ -1,8 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { Progress } from "../pages/Progress";
+import { AuthProvider } from "../context/AuthContext";
 
 test("renders Progress page", () => {
-  render(<Progress />);
+  render(
+    <AuthProvider>
+      <Progress />
+    </AuthProvider>
+  );
 
   const calendarTitle = screen.getByText(/Your Sleep Journey/i);
   expect(calendarTitle).toBeInTheDocument();
