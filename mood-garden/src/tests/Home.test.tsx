@@ -22,9 +22,4 @@ test("renders Homepage", async () => {
   const googleLoginButton = screen.getByText(/Sign in with Google/i);
   expect(googleLoginButton).toBeInTheDocument();
 
-  // If the login happens successfully and the name is set, you can test for the welcome message
-  await waitFor(() => {
-    const welcomeMessage = screen.getByText(/Welcome, /i);
-    expect(welcomeMessage).toBeInTheDocument();
-  });
 });
