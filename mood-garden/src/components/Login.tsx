@@ -1,39 +1,64 @@
-import {useState } from "react";
+import { useState } from "react";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import decodeJwt from "../utils/decodeJwt";
+import "../styles/login.css";
 
- 
 
-export default function Login()
-{
 
-  const[name, setName] = useState<string | null>(null); 
 
-  function handleError(){
+export default function Login() {
+
+  const [name, setName] = useState<string | null>(null);
+
+  function handleError() {
     console.log("Login failed");
   }
 
 
-  function handleSuccess(credentialResponse: CredentialResponse){
+  function handleSuccess(credentialResponse: CredentialResponse) {
     console.log("credentialResponse", credentialResponse);
 
-    if (credentialResponse.credential){
-      const {payload} = decodeJwt(credentialResponse.credential);
+    if (credentialResponse.credential) {
+      const { payload } = decodeJwt(credentialResponse.credential);
       console.log("payload credential", payload);
-      setName(payload.name); 
+      setName(payload.name);
     }
   }
 
-  return <div> 
-    { name === null && (<GoogleLogin 
-    onError={handleError} 
-    onSuccess={handleSuccess}/>) }
+  return (
+    <div>
+      <div className="google-login-container">
+        <GoogleLogin
+          onError={handleError}
+          onSuccess={handleSuccess}
+        />
+      </div>
+      {name && <p>Welcome: {name}</p>}
+    </div>
+  );
+};
+/*return <div>
+  {name === null && (<GoogleLogin
+    onError={handleError}
+    onSuccess={handleSuccess} />)}
 
-    { name && <p> welcome: {name} </p>}
+  {name && <p> welcome: {name} </p>}
+=======
+  return <div className="my-custom-container">
 
-  </div>
+    {name === null &&
+
+      <GoogleLogin
+        onError={handleError}
+        onSuccess={handleSuccess} />}
+
+    {name && <h1> Welcome: {name}! </h1>}
+
+
+
+</div>
 }
-
+*/
 
 
 
