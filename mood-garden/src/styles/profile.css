@@ -12,6 +12,7 @@
   opacity: 0.55;
 }
 
+
 .profileContainer {
   display: flex;
   flex-direction: column;
@@ -22,6 +23,15 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   margin: 40px auto;
+}
+
+#please-log-in
+{
+  font-size: 20px;
+  background-color: #0000;
+  color: rgb(0, 0, 0);
+  border: none;
+  text-align: center;
 }
 
 #icon {
@@ -104,5 +114,7 @@
   font-size: 1.2em;
   font-weight: bold;
 }
+
+
 
 
