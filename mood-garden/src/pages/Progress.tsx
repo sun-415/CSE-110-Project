@@ -7,6 +7,7 @@ import { View } from "react-calendar/dist/cjs/shared/types";
 import { CheckInModal } from "../components/CheckInModal/CheckInModal";
 import { getQuestionnaireResponsesByUserId } from "../api/questionnaireResponses";
 import { useAuth } from "../context/AuthContext";
+import { SurveyReminderModal } from "../components/SurveyReminderModal/SurveyReminderModal";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -17,6 +18,8 @@ export const Progress = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [markedDates, setMarkedDates] = useState<Record<string, string>>({});
   const { user } = useAuth();
+  const [showSurveyReminder, setShowSurveyReminder] = useState(false);
+  const [todayChecked, setTodayChecked] = useState(false);
 
   // TODO: Populate with backend data
   // const markedDates: Record<string, boolean> = {
@@ -33,6 +36,14 @@ export const Progress = () => {
       });
     }
   }, [user]);
+
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0];
+    if (!markedDates[today] && !todayChecked) {
+      setShowSurveyReminder(true);
+      setTodayChecked(true);
+    }
+  }, [markedDates, todayChecked]);
 
   const hasAnsweredQuestionnaire = (date: Date) => {
     const dateString = date.toISOString().split("T")[0]; // Format to YYYY-MM-DD
@@ -73,6 +84,13 @@ export const Progress = () => {
     setLastClickTime(currentTime);
   };
 
+  const handleStartSurvey = () => {
+    const today = new Date();
+    setSelectedDate(today);
+    setIsModalOpen(true);
+    setShowSurveyReminder(false);
+  };
+
   return (
     <>
       <div className="backgroundWrapper"></div>
@@ -83,7 +101,7 @@ export const Progress = () => {
             <Calendar
               className="custom-calendar"
               onClickDay={onClickDay}
-              onChange={() => {}}
+              onChange={() => { }}
               tileClassName={({ date, view }) => getTileStyle(date, view)}
             />
           </div>
@@ -98,6 +116,11 @@ export const Progress = () => {
           selectedDate={selectedDate}
         />
       )}
+      <SurveyReminderModal
+        isOpen={showSurveyReminder}
+        onClose={() => setShowSurveyReminder(false)}
+        onStartSurvey={handleStartSurvey}
+      />
     </>
   );
 };
