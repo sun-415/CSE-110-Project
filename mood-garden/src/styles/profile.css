@@ -12,14 +12,97 @@
   opacity: 0.55;
 }
 
-
 .profileContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  height: calc(100vh - 100px);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  position: relative;
-  z-index: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 40px auto;
 }
+
+#icon {
+  width: 150px; 
+  height: 150px;  
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background-color: #fff;
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.profile-details {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.profile-details h1 {
+  font-size: 2em;
+}
+
+.profile-details p {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
+.sleep-target {
+  margin-top: 20px;
+}
+
+.sleep-target h3 {
+  font-size: 1.5em;
+}
+
+.sleep-target-display,
+.sleep-target-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.sleep-target-edit input {
+  width: 60px;
+  padding: 5px;
+  font-size: 1.2em;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sleep-target-edit button,
+.sleep-target-display button {
+  padding: 5px 10px;
+  font-size: 1.1em;
+  background-color: #0000;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sleep-target-edit button:hover,
+.sleep-target-display button:hover {
+  background-color: #6e6e6e;
+}
+
+.sleep-target-display span {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+
