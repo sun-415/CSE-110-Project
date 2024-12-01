@@ -60,51 +60,53 @@ export const Profile = () => {
   return (
 <>
       <div className="background"></div>
-      <div className="profileContainer">
-        <div
-          id="icon"
-          style={{ backgroundImage: `url(${localUser?.profilePicture})` }}
-        ></div>
-
-        <div className="profile-details">
-          <h1>{localUser?.name}</h1>
-          <p>Email: {localUser?.email}</p>
-          <p>Score: {localUser?.score}</p>
-
-          <div className="sleep-target">
-            <h3>Target Sleep Time: </h3>
+        <div className="profileContainer">
+          <div className="profile-header">
+            <div
+              id="icon"
+              style={{ backgroundImage: `url(${localUser?.profilePicture})` }}
+            ></div>
+            <h1>{localUser?.name}</h1>
           </div>
-
-          <div>
-            {editingSleepTarget ? (
-              <div className="sleep-target-edit">
-                <input
-                  type="number"
-                  value={newSleepTarget}
-                  onChange={handleSleepTargetChange}
-                  disabled={loading} // Disable input while loading
-                />
-                <button onClick={handleSaveSleepTarget} disabled={loading}>
-                  Save
-                </button>
-                <button
-                  onClick={() => setEditingSleepTarget(false)}
-                  disabled={loading}
-                >
-                  Cancel
-                </button>
-              </div>
-            ) : (
-              <div className="sleep-target-display">
-                <span>{localUser?.targetSleepTime} hours</span>
-                <button onClick={() => setEditingSleepTarget(true)}>Edit</button>
-              </div>
-            )}
+          <div className="profile-details">
+            <div className="detail-box">
+              <p>Email: {localUser?.email}</p>
+            </div>
+            <div className="detail-box">
+              <p>Score: {localUser?.score}</p>
+            </div>
+            <div className="detail-box">
+              <h3>Target Sleep Time:</h3>
+              {editingSleepTarget ? (
+                <div className="sleep-target-edit">
+                  <input
+                    type="number"
+                    value={newSleepTarget}
+                    onChange={handleSleepTargetChange}
+                    disabled={loading}
+                  />
+                  <button onClick={handleSaveSleepTarget} disabled={loading}>
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setEditingSleepTarget(false)}
+                    disabled={loading}
+                  >
+                    Cancel
+                  </button>
           </div>
+        ) : (
+          <div className="sleep-target-display">
+            <div id = "targetTime">
+            <span>{localUser?.targetSleepTime} hours</span>
+            </div>
 
-          {/* Display loading or error messages */}
-          {loading && <p>Saving...</p>}
-          {error && <p className="error">{error}</p>}
+            <div id= "editButton">
+            <button onClick={() => setEditingSleepTarget(true)}>Edit</button>
+            </div>
+          </div>
+        )}
+          </div>
         </div>
       </div>
     </>
