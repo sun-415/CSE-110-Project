@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { GardenModal } from "../GardenModal/GardenModal";
 import { useAuth } from "../../context/AuthContext";
 import { levels } from "../../constants/levels";
+import { SurveyReminderModal } from "../SurveyReminderModal/SurveyReminderModal";
 
-export const NextPlant = () => {
+export const NextPlant = ({ onStartSurvey }: { onStartSurvey: () => void }) => {
   const [isGardenOpen, setIsGardenOpen] = useState(false);
 
   const { user, updateScore } = useAuth();
@@ -12,6 +13,7 @@ export const NextPlant = () => {
   const [pointsNeeded, setPointsNeeded] = useState(levels[0].requiredScore);
 
   const [initializationDone, setInitializationDone] = useState(false);
+  const [showSurveyReminder, setShowSurveyReminder] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -34,10 +36,8 @@ export const NextPlant = () => {
         if (user.score >= levels[i].requiredScore) {
           setCurrLevel(i + 1);
           alert(
-            `You've also completed Level ${currLevel} (${
-              levels[i].requiredScore
-            } points) and onto Level ${
-              currLevel + 1
+            `You've also completed Level ${currLevel} (${levels[i].requiredScore
+            } points) and onto Level ${currLevel + 1
             }! \nDon't forget to check out your new plant in your garden.`
           );
           setWIPplant(levels[i + 1].plant);
@@ -97,8 +97,26 @@ export const NextPlant = () => {
   //   setPointsNeeded(pointsNeeded + 100);
   // }
 
+  const handleStartSurvey = () => {
+    onStartSurvey();
+    setShowSurveyReminder(false);
+  };
+
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0];
+    const hasAnsweredToday = false; // TODO: Get this from your questionnaire responses
+    if (!hasAnsweredToday) {
+      setShowSurveyReminder(true);
+    }
+  }, []);
+
   return (
     <div className="nextPlantContainer">
+      <SurveyReminderModal
+        isOpen={showSurveyReminder}
+        onClose={() => setShowSurveyReminder(false)}
+        onStartSurvey={handleStartSurvey}
+      />
       <h2>{currLevel === 5 ? "Last Plant" : "Next Plant"}</h2>
       <div className="plantPreview">
         <img src={WIPplant} alt={"Next Plant"} className={"WIP-plant"} />
