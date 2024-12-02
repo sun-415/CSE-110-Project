@@ -3,6 +3,7 @@ import { GardenModal } from "../GardenModal/GardenModal";
 import { useAuth } from "../../context/AuthContext";
 import { levels } from "../../constants/levels";
 import { SurveyReminderModal } from "../SurveyReminderModal/SurveyReminderModal";
+import { getQuestionnaireResponsesByUserId } from "../../api/questionnaireResponses";
 
 export const NextPlant = ({ onStartSurvey }: { onStartSurvey: () => void }) => {
   const [isGardenOpen, setIsGardenOpen] = useState(false);
@@ -13,7 +14,7 @@ export const NextPlant = ({ onStartSurvey }: { onStartSurvey: () => void }) => {
   const [pointsNeeded, setPointsNeeded] = useState(levels[0].requiredScore);
 
   const [initializationDone, setInitializationDone] = useState(false);
-  const [showSurveyReminder, setShowSurveyReminder] = useState(false);
+  const [showSurveyReminder, setShowSurveyReminder] = useState(true);
 
   useEffect(() => {
     if (user) {
@@ -36,8 +37,10 @@ export const NextPlant = ({ onStartSurvey }: { onStartSurvey: () => void }) => {
         if (user.score >= levels[i].requiredScore) {
           setCurrLevel(i + 1);
           alert(
-            `You've also completed Level ${currLevel} (${levels[i].requiredScore
-            } points) and onto Level ${currLevel + 1
+            `You've also completed Level ${currLevel} (${
+              levels[i].requiredScore
+            } points) and onto Level ${
+              currLevel + 1
             }! \nDon't forget to check out your new plant in your garden.`
           );
           setWIPplant(levels[i + 1].plant);
@@ -103,21 +106,28 @@ export const NextPlant = ({ onStartSurvey }: { onStartSurvey: () => void }) => {
   };
 
   useEffect(() => {
-    const today = new Date().toISOString().split('T')[0];
-    const hasAnsweredToday = false; // TODO: Get this from your questionnaire responses
-    if (!hasAnsweredToday) {
-      setShowSurveyReminder(true);
+    if (user) {
+      // Check if questionnaire has been filled today
+      getQuestionnaireResponsesByUserId(user._id).then((response) => {
+        if (response.success) {
+          const today = new Date().toISOString().split("T")[0];
+          if (response.data[today]) {
+            setShowSurveyReminder(false);
+          } else {
+            setShowSurveyReminder(true);
+          }
+        }
+      });
     }
-  }, []);
+  }, [user]);
 
   return (
     <div className="nextPlantContainer">
       <SurveyReminderModal
         isOpen={showSurveyReminder}
-        onClose={() => setShowSurveyReminder(false)}
         onStartSurvey={handleStartSurvey}
       />
-      <h2>{currLevel === 5 ? "Last Plant" : "Next Plant"}</h2>
+      <h2>{currLevel === levels.length ? "Last Plant" : "Next Plant"}</h2>
       <div className="plantPreview">
         <img src={WIPplant} alt={"Next Plant"} className={"WIP-plant"} />
       </div>
@@ -131,7 +141,7 @@ export const NextPlant = ({ onStartSurvey }: { onStartSurvey: () => void }) => {
         </span>
       </div>
       <p className="plantDescription">
-        {currLevel == 5
+        {currLevel === levels.length
           ? "You have earned all the plants!"
           : "Keep tracking your sleep to grow your next plant!"}
       </p>

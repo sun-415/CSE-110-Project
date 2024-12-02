@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { GardenModal } from "../components/GardenModal/GardenModal";
-import { PointsContext } from "../context/PointsContext";
 import { AuthProvider } from "../context/AuthContext";
 
 describe("GardenModal", () => {

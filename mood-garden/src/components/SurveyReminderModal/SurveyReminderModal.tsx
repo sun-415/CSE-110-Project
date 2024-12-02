@@ -1,16 +1,14 @@
-import { FC } from 'react';
-import './SurveyReminderModal.css';
+import { FC } from "react";
+import "./SurveyReminderModal.css";
 
 interface SurveyReminderModalProps {
   isOpen: boolean;
-  onClose: () => void;
   onStartSurvey: () => void;
 }
 
 export const SurveyReminderModal: FC<SurveyReminderModalProps> = ({
   isOpen,
-  onClose,
-  onStartSurvey
+  onStartSurvey,
 }) => {
   if (!isOpen) return null;
 
