@@ -69,14 +69,6 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.sleep-target {
-  margin-top: 20px;
-}
-
-.sleep-target h3 {
-  font-size: 1.5em;
-}
-
 .sleep-target-display,
 .sleep-target-edit {
   display: flex;
@@ -95,11 +87,16 @@
   border-radius: 4px;
 }
 
-.sleep-target-edit button,
-.sleep-target-display button {
+#targetTime
+{
+  color: rgb(0, 0, 0);
+}
+
+.button
+{
   padding: 5px 10px;
   font-size: 1.1em;
-  background-color: #0000;
+  background-color: #36642f;
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 4px;
@@ -107,13 +104,28 @@
   transition: background-color 0.3s;
 }
 
-.sleep-target-edit button:hover,
-.sleep-target-display button:hover {
+.button:hover
+{
   background-color: #6e6e6e;
 }
 
 .sleep-target-display span {
   font-size: 1.2em;
+}
+
+.cancel-button {
+  padding: 5px 10px;
+  font-size: 1.1em;
+  background-color: #d9534f; 
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #c9302c; /* Darker red on hover */
 }
 
 
