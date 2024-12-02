@@ -60,14 +60,16 @@ export const Progress = () => {
   };
 
   const onClickDay = (value: Value) => {
-    const currentTime = new Date().getTime();
+    // Ensure value is a Date and not in the future
+    if (!(value instanceof Date) || value > new Date()) {
+      return;
+    }
 
+    const currentTime = new Date().getTime();
     if (lastClickTime && currentTime - lastClickTime < 300) {
       // Handle double click
-      if (value instanceof Date) {
-        setSelectedDate(value);
-        setIsModalOpen(true);
-      }
+      setSelectedDate(value);
+      setIsModalOpen(true);
     }
 
     setLastClickTime(currentTime);
