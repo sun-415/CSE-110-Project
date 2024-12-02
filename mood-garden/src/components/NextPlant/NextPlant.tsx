@@ -102,7 +102,6 @@ export const NextPlant = ({ onStartSurvey }: { onStartSurvey: () => void }) => {
 
   const handleStartSurvey = () => {
     onStartSurvey();
-    setShowSurveyReminder(false);
   };
 
   useEffect(() => {
