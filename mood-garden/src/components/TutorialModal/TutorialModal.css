@@ -14,11 +14,20 @@
 .modal-content {
   background: #fff;
   padding: 20px;
-  border-radius: 8px;
-  max-width: 500px;
+  border-radius: 12px;
+  max-width: 1000px;
   width: 80%;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.instructions {
+  text-align: left;
+}
+
+.modal-content p, .modal-content li {
+  line-height: 1.3;
+  margin-bottom: 6px;
 }
 
 .close-button {
@@ -31,41 +40,3 @@
   cursor: pointer;
 }
 
-
-/* .tutorialModalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.tutorialModalContent {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  position: relative;
-  width: 90%;
-  max-width: 1200px;
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.closeButton {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #2c3e50;
-  z-index: 1001;
-} */
