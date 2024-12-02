@@ -34,7 +34,7 @@ export const Home = () => {
             })}
           </div>
           <div className="welcomeBox">
-              <button className= "infoButton" onClick={openModal}> i </button>
+              <button className= "infoButton" onClick={openModal} data-testid="infoButton"> i </button>
             <h1>Plant the Seeds of Better Sleep</h1>
             <p>
               Track your sleep, tend to your garden, and watch your healthy

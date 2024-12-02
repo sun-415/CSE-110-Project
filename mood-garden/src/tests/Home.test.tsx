@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Home } from "../pages/Home";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { AuthProvider } from "../context/AuthContext";
@@ -24,4 +24,20 @@ test("renders Homepage", async () => {
   // Wait for the Google login button to be rendered (it might appear asynchronously)
   // const googleLoginButton = screen.getByText(/Sign in with Google/i);
   // expect(googleLoginButton).toBeInTheDocument();
+});
+
+test("view tutorial", async () => {
+  render(
+    <GoogleOAuthProvider clientId="130824139626-b0tcvptr6rr7ka9l8c0ipmvfik3fc2e5.apps.googleusercontent.com">
+      <AuthProvider>
+        <Home />
+      </AuthProvider>
+    </GoogleOAuthProvider>
+  );
+
+  const tutorialButton = screen.getByTestId("infoButton");
+  fireEvent.click(tutorialButton);
+
+  const tutorial = screen.getByText("How to Use Mood Garden");
+  expect(tutorial).toBeInTheDocument();
 });
