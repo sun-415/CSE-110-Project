@@ -1,7 +1,7 @@
 import { useAuth } from "../context/AuthContext";
 import "../styles/profile.css";
-import { useState, useEffect } from "react";
-import { createUser, getUserById, updateUser } from "../api/users";
+import { useState } from "react";
+import { getUserById, updateUser } from "../api/users";
 
 export const Profile = () => {
 
@@ -85,10 +85,10 @@ export const Profile = () => {
                     onChange={handleSleepTargetChange}
                     disabled={loading}
                   />
-                  <button onClick={handleSaveSleepTarget} disabled={loading}>
+                  <button className="button" onClick={handleSaveSleepTarget} disabled={loading}>
                     Save
                   </button>
-                  <button
+                  <button className="cancel-button"
                     onClick={() => setEditingSleepTarget(false)}
                     disabled={loading}
                   >
@@ -101,8 +101,8 @@ export const Profile = () => {
             <span>{localUser?.targetSleepTime} hours</span>
             </div>
 
-            <div id= "editButton">
-            <button onClick={() => setEditingSleepTarget(true)}>Edit</button>
+            <div>
+            <button className="button" onClick={() => setEditingSleepTarget(true)}>Edit</button>
             </div>
           </div>
         )}
