@@ -18,22 +18,22 @@ export const levels: Level[] = [
   },
   {
     num: 2,
-    requiredScore: 200,
+    requiredScore: 250,
     plant: plant2,
   },
   {
     num: 3,
-    requiredScore: 300,
+    requiredScore: 750,
     plant: plant3,
   },
   {
     num: 4,
-    requiredScore: 400,
+    requiredScore: 1500,
     plant: plant4,
   },
   {
     num: 5,
-    requiredScore: 500,
+    requiredScore: 5000,
     plant: plant5,
   },
 ];
