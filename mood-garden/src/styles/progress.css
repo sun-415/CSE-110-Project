@@ -23,6 +23,7 @@
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 555px;
 }
 
 .calendarSection h2 {
@@ -34,6 +35,9 @@
 
 .plantSection {
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
   background: #f8f9fa;
   padding: 30px;
   border-radius: 12px;
@@ -52,8 +56,9 @@
   padding: 1em 0.5em;
   background: none;
   text-align: center;
-  line-height: 16px;
+  line-height: 32px;
   font-family: "Inter", sans-serif;
+  /* border-radius: 0px !important; */
 }
 
 .react-calendar__tile:enabled:hover {
@@ -102,6 +107,7 @@
 /* Next Plant styles */
 .nextPlantContainer {
   text-align: center;
+  justify-items: center;
 }
 
 .nextPlantContainer h2 {
@@ -111,9 +117,9 @@
 }
 
 .plantPreview img {
-  width: 150px; 
+  width: 150px;
   height: 150px;
-  object-fit: contain; 
+  object-fit: contain;
   display: block;
   margin: 0 auto;
 }
@@ -125,6 +131,7 @@
   position: relative;
   margin: 20px 0;
   overflow: hidden;
+  width: 280px;
 }
 
 .progressBarFill {
@@ -174,7 +181,7 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .viewGardenButton:hover {

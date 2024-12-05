@@ -126,14 +126,25 @@ export const NextPlant = ({ onStartSurvey }: { onStartSurvey: () => void }) => {
         isOpen={showSurveyReminder}
         onStartSurvey={handleStartSurvey}
       />
-      <h2>{currLevel === levels.length ? "Last Plant" : "Next Plant"}</h2>
+      <h2>
+        {currLevel === levels.length
+          ? "You have obtained all plants!"
+          : currLevel === levels.length - 1
+          ? "Last Plant"
+          : "Next Plant"}
+      </h2>
       <div className="plantPreview">
         <img src={WIPplant} alt={"Next Plant"} className={"WIP-plant"} />
       </div>
       <div className="progressBarContainer">
         <div
           className="progressBarFill"
-          style={{ width: `${((user?.score || 0) / pointsNeeded) * 100}%` }}
+          style={{
+            width: `${Math.min(
+              ((user?.score || 0) / pointsNeeded) * 100,
+              100
+            )}%`,
+          }}
         />
         <span className="progressText">
           {user?.score || 0}/{pointsNeeded} points
@@ -150,13 +161,13 @@ export const NextPlant = ({ onStartSurvey }: { onStartSurvey: () => void }) => {
       >
         View Garden
       </button>
-      <button
+      {/* <button
         className="viewGardenButton"
         style={{ marginTop: "10px", backgroundColor: "#666" }}
         onClick={handleTestPoints}
       >
         Test Points
-      </button>
+      </button> */}
       <GardenModal
         isOpen={isGardenOpen}
         onClose={() => setIsGardenOpen(false)}
