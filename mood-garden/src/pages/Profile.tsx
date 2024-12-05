@@ -7,7 +7,7 @@ export const Profile = () => {
 
   const { isAuthenticated, user } = useAuth();
   const [editingSleepTarget, setEditingSleepTarget] = useState(false);
-  const [newSleepTarget, setNewSleepTarget] = useState(user?.targetSleepTime || 8);
+  const [newSleepTarget, setNewSleepTarget] = useState(user?.targetSleepTime);
   const [localUser, setLocalUser] = useState(user);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -19,7 +19,15 @@ export const Profile = () => {
   }
 
   const handleSleepTargetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewSleepTarget(Number(e.target.value));
+    
+    const sleepGoal = Number(e.target.value); 
+
+    if (sleepGoal < -1 || sleepGoal > 24) {
+      setError(`Sleep goal must be between ${0} and ${24}.`);
+    } else {
+      setError(null); 
+      setNewSleepTarget(sleepGoal);
+    }
   };
 
 

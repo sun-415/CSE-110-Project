@@ -2,6 +2,7 @@ import Login from "../components/Login";
 import { useAuth } from "../context/AuthContext";
 import "../styles/home.css";
 import { useState, useEffect } from "react";
+import PopUpModal from "../components/PopUpModal/PopUpModal"
 import TutorialModal from "../components/TutorialModal/TutorialModal";
 
 
@@ -10,7 +11,7 @@ export const Home = () => {
   const [isTutorialOpen, setIsTutorialOpen] = useState(false);
   const openModal = () => setIsTutorialOpen(true);
   const closeModal = () => setIsTutorialOpen(false);
-
+  const [showPopup, setShowPopup] = useState(false);
   const { isAuthenticated, user } = useAuth();
 
   useEffect(() => {
@@ -20,6 +21,12 @@ export const Home = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (user?.targetSleepTime === -1) {
+      setShowPopup(true);
+    }
+  }, [user]);
 
   return (
     <>
@@ -49,6 +56,11 @@ export const Home = () => {
           isOpen={isTutorialOpen}
           onClose={closeModal}
         />
+        {showPopup && (
+          <PopUpModal
+            userId={user?._id||""} 
+            onClose={() => setShowPopup(false)}
+          />)}
       </div>
     </>
   );

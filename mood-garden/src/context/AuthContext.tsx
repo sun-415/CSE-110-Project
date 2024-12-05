@@ -11,6 +11,7 @@ interface AuthContextType {
   logout: () => void;
   isAuthenticated: boolean;
   updateScore: (score: number) => void;
+  updateSleepTarget: (targetSleepTime: number) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -55,7 +56,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           _id: payload.sub,
           email: payload.email,
           name: payload.name,
-          targetSleepTime: 8,
+          targetSleepTime: -1,
           score: 0,
         }).then((response) => {
           if (response.success) {
@@ -91,6 +92,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const updateSleepTarget = (targetSleepTime: number) => {
+    if (user) {
+      updateUser(user._id, { targetSleepTime }).then((response) => {
+        if (response.success) {
+          setUser({ ...response.data, profilePicture: user.profilePicture });
+        } else {
+          console.error("Failed to update sleep target:", response.error);
+        }
+      });
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -99,6 +112,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         logout,
         isAuthenticated: !!user,
         updateScore,
+        updateSleepTarget
       }}
     >
       {children}
