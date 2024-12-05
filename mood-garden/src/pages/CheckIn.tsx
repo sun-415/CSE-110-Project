@@ -25,6 +25,7 @@ export const CheckIn: FC<CheckInProps> = ({
   const { isAuthenticated, user, updateScore } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("here");
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -84,7 +85,7 @@ export const CheckIn: FC<CheckInProps> = ({
 
   const content = (
     <div className="formBox">
-      <h1>
+      <h1 style={{ justifySelf: "center" }}>
         Daily Sleep Check-In{" "}
         {selectedDate && `for ${selectedDate.toLocaleDateString()}`}
       </h1>
@@ -101,6 +102,7 @@ export const CheckIn: FC<CheckInProps> = ({
             value={formData.sleepHours}
             onChange={handleChange}
             required
+            style={{ width: "280px" }}
           />
         </div>
 
