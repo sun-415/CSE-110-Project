@@ -1,5 +1,4 @@
 import { Home } from "./pages/Home";
-import { CheckIn } from "./pages/CheckIn";
 import { Progress } from "./pages/Progress";
 import { Profile } from "./pages/Profile";
 import { Route, Routes } from "react-router-dom";
