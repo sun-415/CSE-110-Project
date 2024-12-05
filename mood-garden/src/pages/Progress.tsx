@@ -16,13 +16,7 @@ export const Progress = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [markedDates, setMarkedDates] = useState<Record<string, string>>({});
-  const { user } = useAuth();
-
-  // TODO: Populate with backend data
-  // const markedDates: Record<string, boolean> = {
-  //   "2024-11-12": true,
-  //   "2024-11-13": true,
-  // };
+  const { user, isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (user) {
@@ -33,6 +27,14 @@ export const Progress = () => {
       });
     }
   }, [user]);
+
+  if (!isAuthenticated) {
+    return (
+      <div id="please-log-in">
+        <p> Please log in to view your progress.</p>
+      </div>
+    );
+  }
 
   const hasAnsweredQuestionnaire = (date: Date) => {
     const dateString = date.toISOString().split("T")[0]; // Format to YYYY-MM-DD
@@ -91,7 +93,7 @@ export const Progress = () => {
             <Calendar
               className="custom-calendar"
               onClickDay={onClickDay}
-              onChange={() => { }}
+              onChange={() => {}}
               tileClassName={({ date, view }) => getTileStyle(date, view)}
             />
           </div>

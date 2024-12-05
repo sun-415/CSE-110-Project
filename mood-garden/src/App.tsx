@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/navbar";
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext";
+import SetTargetSleep from "./components/SetTargetSleep";
 
 function App() {
   return (
@@ -12,9 +13,11 @@ function App() {
       <AuthProvider>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<SetTargetSleep />}>
+            <Route index element={<Home />} />
+            <Route path="progress" element={<Progress />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
         </Routes>
       </AuthProvider>
     </div>
