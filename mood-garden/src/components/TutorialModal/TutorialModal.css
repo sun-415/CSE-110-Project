@@ -19,6 +19,7 @@
   max-width: 1000px !important;
   text-align: center !important;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  position: relative;
 }
 
 .instructions {
