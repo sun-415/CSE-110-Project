@@ -6,13 +6,20 @@ interface ResponseViewModalProps {
   onClose: () => void;
 }
 
-export const ResponseViewModal = ({ response, onClose }: ResponseViewModalProps) => {
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+export const ResponseViewModal = ({
+  response,
+  onClose,
+}: ResponseViewModalProps) => {
+  const formatDate = (date: string) => {
+    const time = new Date(date).getTime();
+    const offsetDate = new Date(
+      time + new Date().getTimezoneOffset() * 60 * 1000
+    );
+    return offsetDate.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -22,7 +29,9 @@ export const ResponseViewModal = ({ response, onClose }: ResponseViewModalProps)
         <div className="response-modal">
           <div className="modal-header">
             <h2>Sleep Journal Entry</h2>
-            <button className="close-button" onClick={onClose}>×</button>
+            <button className="close-button" onClick={onClose}>
+              ×
+            </button>
           </div>
 
           <div className="modal-content">
@@ -42,4 +51,4 @@ export const ResponseViewModal = ({ response, onClose }: ResponseViewModalProps)
       </div>
     )
   );
-}; 
+};
