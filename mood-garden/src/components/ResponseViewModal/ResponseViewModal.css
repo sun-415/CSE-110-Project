@@ -1,0 +1,93 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.response-modal {
+  background: white;
+  padding: 0;
+  border-radius: 8px;
+  position: relative;
+  width: max-content;
+  min-width: 600px;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 10px;
+  color: #666;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.date-section {
+  margin: 0;
+}
+
+.date-section h3 {
+  color: #666;
+  font-weight: 500;
+}
+
+.responses-section {
+  display: flex;
+  width: 100% !important;
+  flex-direction: column;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.response-item,
+.response-item p,
+.date-section,
+.date-section h3 {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.response-item {
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
