@@ -33,6 +33,13 @@ export const CheckIn: FC<CheckInProps> = ({
     }));
   };
 
+  const formatDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData); // For now, just log the data
@@ -53,7 +60,7 @@ export const CheckIn: FC<CheckInProps> = ({
     if (isAuthenticated && user && selectedDate) {
       createQuestionnaireResponse({
         userId: user._id,
-        date: selectedDate,
+        date: formatDate(selectedDate),
         responses: Object.values(formData).map((value) => parseFloat(value)),
       }).then((response) => {
         if (response.success) {

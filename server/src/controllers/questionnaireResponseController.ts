@@ -160,8 +160,7 @@ export const getResponsesByUserId = asyncHandler(async (req, res, next) => {
 
   const dateToId: Record<string, string> = {};
   responses.forEach((response) => {
-    dateToId[response.date.toISOString().split("T")[0]] =
-      response._id.toString();
+    dateToId[response.date] = response._id.toString();
   });
 
   res.json(dateToId);

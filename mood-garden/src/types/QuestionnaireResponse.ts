@@ -1,7 +1,7 @@
 export interface QuestionnaireResponse {
   _id: string;
   userId: string;
-  date: Date;
+  date: string;
   responses: (string | number | boolean)[];
 }
 
@@ -14,7 +14,7 @@ export interface QuestionnaireResponseJSON {
 
 export interface CreateQuestionnaireResponseRequest {
   userId: string;
-  date: Date;
+  date: string;
   responses: (string | number | boolean)[];
 }
 
