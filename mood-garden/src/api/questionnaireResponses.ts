@@ -19,7 +19,7 @@ function parseQuestionnaireResponse(
   return {
     _id: response._id,
     userId: response.userId,
-    date: new Date(response.date),
+    date: response.date,
     responses: response.responses,
   };
 }
