@@ -5,8 +5,10 @@ import "react-calendar/dist/Calendar.css";
 import "../styles/progress.css";
 import { View } from "react-calendar/dist/cjs/shared/types";
 import { CheckInModal } from "../components/CheckInModal/CheckInModal";
-import { getQuestionnaireResponsesByUserId } from "../api/questionnaireResponses";
+import { getQuestionnaireResponsesByUserId, getQuestionnaireResponseById } from "../api/questionnaireResponses";
 import { useAuth } from "../context/AuthContext";
+import { QuestionnaireResponse } from "../types/QuestionnaireResponse";
+import { ResponseViewModal } from "../components/ResponseViewModal/ResponseViewModal";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -14,8 +16,10 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 export const Progress = () => {
   const [lastClickTime, setLastClickTime] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isResponseViewModalOpen, setIsResponseViewModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [markedDates, setMarkedDates] = useState<Record<string, string>>({});
+  const [selectedResponse, setSelectedResponse] = useState<QuestionnaireResponse | null>(null);
   const { user, isAuthenticated } = useAuth();
 
   useEffect(() => {
@@ -61,7 +65,7 @@ export const Progress = () => {
     return null;
   };
 
-  const onClickDay = (value: Value) => {
+  const onClickDay = async (value: Value) => {
     // Ensure value is a Date and not in the future
     if (!(value instanceof Date) || value > new Date()) {
       return;
@@ -70,10 +74,20 @@ export const Progress = () => {
     const currentTime = new Date().getTime();
     if (lastClickTime && currentTime - lastClickTime < 300) {
       // Handle double click
-      setSelectedDate(value);
-      setIsModalOpen(true);
-    }
+      const dateString = value.toISOString().split("T")[0];
+      const responseId = markedDates[dateString];
 
+      if (responseId) {
+        const response = await getQuestionnaireResponseById(responseId);
+        if (response.success) {
+          setSelectedResponse(response.data);
+          setIsResponseViewModalOpen(true);
+        }
+      } else {
+        setSelectedDate(value);
+        setIsModalOpen(true);
+      }
+    }
     setLastClickTime(currentTime);
   };
 
@@ -93,7 +107,7 @@ export const Progress = () => {
             <Calendar
               className="custom-calendar"
               onClickDay={onClickDay}
-              onChange={() => {}}
+              onChange={() => { }}
               tileClassName={({ date, view }) => getTileStyle(date, view)}
             />
           </div>
@@ -104,8 +118,17 @@ export const Progress = () => {
       </div>
       {isModalOpen && (
         <CheckInModal
-          onClose={() => setIsModalOpen(false)}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedResponse(null);
+          }}
           selectedDate={selectedDate}
+        />
+      )}
+      {isResponseViewModalOpen && (
+        <ResponseViewModal
+          response={selectedResponse}
+          onClose={() => setIsResponseViewModalOpen(false)}
         />
       )}
     </>
